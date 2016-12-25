@@ -42,6 +42,9 @@ public class Main {
         InputReader in = new InputReader(inputStream);
         
         System.out.println("Hallo");
+        for(int i = 0; i < 10; i++) {
+            System.out.println("FromNETbeans");
+        }
         
         out.close();
     }
