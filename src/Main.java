@@ -43,8 +43,8 @@ public class Main {
         InputReader in = new InputReader(inputStream);
         
         int[] a = {1, 2, 3, 4, 5};
-        algorithms.SegmentTreeMin s = new algorithms.SegmentTreeMin(a);
-        out.println(s.getMin(4, 4));
+        algorithms.SegmentTreeMax s = new algorithms.SegmentTreeMax(a);
+        out.println(s.getMax(0, 4));
         out.close();
     }
 
