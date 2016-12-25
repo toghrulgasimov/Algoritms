@@ -41,10 +41,7 @@ public class Main {
         PrintWriter out = new PrintWriter(outputStream);
         InputReader in = new InputReader(inputStream);
         
-        System.out.println("Hallo");
-        for(int i = 0; i < 10; i++) {
-            System.out.println("FromNETbeans");
-        }
+        System.out.println("HalloNetbeans");
         
         out.close();
     }
