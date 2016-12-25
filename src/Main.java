@@ -35,16 +35,8 @@ public class Main {
         PrintWriter out = new PrintWriter(outputStream);
         InputReader in = new InputReader(inputStream);
         
-        Map<Character, Character> m = new HashMap<Character, Character>();
-        char[] s1 = in.next().toCharArray();
-        char[] s2 = in.next().toCharArray();
-        
-        ArrayList<Character> ans1 = new ArrayList<Character>();
-        ArrayList<Character> ans2 = new ArrayList<Character>();
-        int n = s1.length;
-        for(int i = 0; i < n; i++) {
-            
-        }
+        int[] a = {4, 4, 1, 2, 3, 5, 2, 1, 5, 5};
+        in.printAr(algorithms.Sortings.CountingSort(a, 5));
         out.close();
     }
 
@@ -100,7 +92,7 @@ public class Main {
         private BigInteger nextBigInteger() {
             return new BigInteger(next());
         }
-        public void printAr(long[] a) {
+        public void printAr(int[] a) {
             System.out.print("[");
             for(long x  : a)System.out.print(x + ",");
             System.out.print("]");
