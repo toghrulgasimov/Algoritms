@@ -9,6 +9,6 @@ package algorithms;
  *
  * @author Toghrul
  */
-public class SegmentTree {
+public class SegmentTreeSum {
     
 }
