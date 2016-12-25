@@ -10,7 +10,7 @@ package algorithms;
  * @author Toghrul
  */
 public class DSU {
-    public DSU() { // asdasdasdasdasd
+    public DSU() { // molla
         
     }
 }
