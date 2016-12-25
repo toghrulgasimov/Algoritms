@@ -10,9 +10,10 @@ package algorithms;
  * @author Toghrul
  */
 public class SegmentTreeSum {
-    public int height, maxsize;
+    public int height, maxsize, n;
     public long T[];
     public SegmentTreeSum(int[] a) {
+        n = a.length;
         height = (int)Math.ceil((Math.log(a.length) / Math.log(2)));
         maxsize = (int)(2 * Math.pow(2, height) - 1);
         T = new long[maxsize];
@@ -33,5 +34,8 @@ public class SegmentTreeSum {
         if(r < ll || rr < l) return 0;
         int m = (l + r) >> 1;
         return getSum(x << 1, l, m, ll, rr) + getSum(x << 1 | 1, m + 1, r, ll, rr);
+    }
+    public long getSum(int l, int r) {
+        return getSum(1, 0, n - 1, l, r);
     }
 }

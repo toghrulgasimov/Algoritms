@@ -42,7 +42,9 @@ public class Main {
         PrintWriter out = new PrintWriter(outputStream);
         InputReader in = new InputReader(inputStream);
         
-        
+        int[] a = {1, 2, 3, 4, 5};
+        algorithms.SegmentTreeSum s = new SegmentTreeSum(a);
+        out.println(s.getSum(0, 5));
         out.close();
     }
 
