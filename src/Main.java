@@ -41,7 +41,7 @@ public class Main {
         PrintWriter out = new PrintWriter(outputStream);
         InputReader in = new InputReader(inputStream);
         
-        System.out.println("asdasdaasdasdasdddddddddddddd");
+        System.out.println("Hello World");
         
         out.close();
     }
