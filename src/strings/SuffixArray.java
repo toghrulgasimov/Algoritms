@@ -1,5 +1,5 @@
 
-package algorithms;
+package strings;
 
 import java.util.Arrays;
 
