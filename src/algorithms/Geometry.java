@@ -24,19 +24,5 @@ public class Geometry {
         }
         
     }
-    public class Line {
-        public Point p1, p2;
-        public double a, b, c;
-        public Line(Point p1, Point p2) {
-            this.p1 = p1;
-            this.p2 = p2;
-            a = p2.y - p1.y;
-            b = p1.x - p2.x;
-            c = p1.x * p2.y - p2.x * p1.y;
-        }
-        public double[] intersect(Line m, Line n) {
-            
-            return new double[3];
-        }
-    }
+    
 }

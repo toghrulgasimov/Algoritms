@@ -35,8 +35,6 @@ public class Main {
         PrintWriter out = new PrintWriter(outputStream);
         InputReader in = new InputReader(inputStream);
         
-        int[] a = {4, 4, 1, 2, 3, 5, 2, 1, 5, 5};
-        in.printAr(algorithms.Sortings.CountingSort(a, 5));
         out.close();
     }
 
