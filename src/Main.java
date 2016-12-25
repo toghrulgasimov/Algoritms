@@ -1,4 +1,3 @@
-import algorithms.SegmentTreeSum;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -29,17 +28,23 @@ import java.util.logging.Logger;
 
 public class Main {
 
-    public static Map<String, String> map = new HashMap<String, String>(); // salam
+    
     public static void main(String[] args)    {
         InputStream inputStream = System.in;
         OutputStream outputStream = System.out;
         PrintWriter out = new PrintWriter(outputStream);
         InputReader in = new InputReader(inputStream);
         
-        int[] a = {1, 2, 3, 4, 5};
-        algorithms.SegmentTreeSum s = new algorithms.SegmentTreeSum(a);
-        s.update(1, 3);
-        out.println(s.getSum(0, 4));
+        Map<Character, Character> m = new HashMap<Character, Character>();
+        char[] s1 = in.next().toCharArray();
+        char[] s2 = in.next().toCharArray();
+        
+        ArrayList<Character> ans1 = new ArrayList<Character>();
+        ArrayList<Character> ans2 = new ArrayList<Character>();
+        int n = s1.length;
+        for(int i = 0; i < n; i++) {
+            
+        }
         out.close();
     }
 
