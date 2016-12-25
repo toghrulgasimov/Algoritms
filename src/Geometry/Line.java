@@ -15,12 +15,15 @@ public class Line {
         public Line(Geometry.Point p1, Geometry.Point p2) {
             this.p1 = p1;
             this.p2 = p2;
-            a = p2.y - p1.y;
-            b = p1.x - p2.x;
-            c = p1.x * p2.y - p2.x * p1.y;
+            a = p1.y - p2.y;
+            b = p2.x - p1.x;
+            c = -a * p1.x - b * p2.y;;
         }
-        public double[] intersect(Line m, Line n) {
-            
-            return new double[3];
+        public Geometry.Point intersect(Line m, Line n) {
+            double d = m.a * n.b - m.b * n.a;
+            if(Math.abs(d) < 1e-9) return null;
+            double x = -(m.c * n.b - n.c * m.b) / d;
+            double y = -(m.a * n.c - m.c * n.a) / d;
+            return new Geometry.Point(x, y);
         }
     }
