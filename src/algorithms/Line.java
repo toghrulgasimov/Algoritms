@@ -10,9 +10,9 @@ package algorithms;
  * @author Toghrul
  */
 public class Line {
-        public Geometry.Point p1, p2;
+        public algorithms.Point p1, p2;
         public double a, b, c;
-        public Line(Geometry.Point p1, Geometry.Point p2) {
+        public Line(algorithms.Point p1, algorithms.Point p2) {
             this.p1 = p1;
             this.p2 = p2;
             a = p2.y - p1.y;
