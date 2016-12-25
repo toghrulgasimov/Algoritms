@@ -10,5 +10,7 @@ package algorithms;
  * @author Toghrul
  */
 public class DSU {
-    
+    public DSU() {
+        
+    }
 }
