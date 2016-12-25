@@ -36,10 +36,9 @@ public class Main {
         OutputStream outputStream = System.out;
         PrintWriter out = new PrintWriter(outputStream);
         InputReader in = new InputReader(inputStream);
-        Line l1 = new Line(new Point(1, 1), new Point(2, 2));
-        Line l2 = new Line(new Point(2, 1), new Point(3, 2));
-        Point p = Line.intersect(l1, l2);
-        out.println(p.x + " " + p.y);
+        Point a = new Point(1, 1);
+        Point b = new Point(3, 1);
+        Point c = new Point(2, 2);
         out.close();
     }
 

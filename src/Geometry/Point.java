@@ -7,17 +7,23 @@ public class Point {
             this.x = x;
             this.y = y;
         }
-        public Point sum(Point a, Point b) {
+        public static Point sum(Point a, Point b) {
             return new Point(a.x + b.x, a.y + b.y);
         }
-        public Point minus(Point a, Point b) {
+        public static Point minus(Point a, Point b) {
             return new Point(a.x - b.x, a.y - b.y);
         }
-        public Point mul(Point a, double x) {
+        public static Point mul(Point a, double x) {
             return new Point(a.x * x, a.y * x);
         }
-        public double mul(Point a, Point b) {
+        public static double mul(Point a, Point b) {
             return a.x * b.y - b.x * a.y;
         }
-        
+        public static double dist(Point a, Point b) {
+            return Math.sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));
+        }
+        public static boolean on(Point a, Point b, Point c) {
+            if(Math.abs(dist(a, b) - dist(a, c) - dist(b, c)) < 1e-9) return true;
+            return false;
+        }
     }
