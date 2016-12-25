@@ -9,6 +9,6 @@ package algorithms;
  *
  * @author Toghrul
  */
-public class UnionFind {
+public class UnionFind { // ffffffff
     
 }
