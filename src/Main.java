@@ -37,8 +37,9 @@ public class Main {
         InputReader in = new InputReader(inputStream);
         
         int[] a = {1, 2, 3, 4, 5};
-        algorithms.SegmentTreeMax s = new algorithms.SegmentTreeMax(a);
-        out.println(s.getMax(0, 4));
+        algorithms.SegmentTreeSum s = new algorithms.SegmentTreeSum(a);
+        s.update(1, 3);
+        out.println(s.getSum(0, 4));
         out.close();
     }
 

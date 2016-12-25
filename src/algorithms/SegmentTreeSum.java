@@ -35,6 +35,19 @@ public class SegmentTreeSum {
         int m = (l + r) >> 1;
         return getSum(x << 1, l, m, ll, rr) + getSum(x << 1 | 1, m + 1, r, ll, rr);
     }
+    public void update(int x, int l, int r, int i, int v) {
+        if(l == r && l == i) {
+            T[x] = v;
+            return;
+        }
+        int m = (l + r) >> 1;
+        if(l <= i && i <= m) update(x << 1, l, m, i, v);
+        else if(m + 1 <= i && i <= r)update(x << 1 | 1, m + 1, r, i, v);
+        T[x] = T[x << 1] + T[x << 1 | 1];
+    }
+    public void update(int i, int v) {
+        update(1, 0, n - 1, i, v);
+    }
     public long getSum(int l, int r) {
         return getSum(1, 0, n - 1, l, r);
     }
