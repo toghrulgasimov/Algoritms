@@ -27,7 +27,7 @@ public class NumberAlgorithms {
     public static long inverse(long a, long MOD) {
         return powMod(a, MOD, MOD - 2);
     }
-    public static int[] getPhi(int n) {
+    public static int[] getPhitourist(int n) {
         int[] phi = new int[n + 1];
         for(int i = 1; i <= n; i++) {
             phi[i] = i;
@@ -36,6 +36,22 @@ public class NumberAlgorithms {
             for(int j = i + i; j <= n; j += i) {
                 phi[j] -= phi[i];
             }
+        }
+        return phi;
+    }
+    public static int[] getPhi(int n) {
+        int[] phi = new int[n + 1];
+        for (int i = 1; i <= n; i++) {
+            phi[i] = i;
+        }
+        for (int p = 2; p <= n; p++) {
+            if (phi[p] == p) {
+                phi[p] = p - 1;
+                for (int j = p + p; j <= n; j += p) {
+                    phi[j] = (phi[j] / p) * (p - 1);
+                }
+            }
+
         }
         return phi;
     }
