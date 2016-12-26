@@ -55,6 +55,9 @@ public class NumberAlgorithms {
         }
         return phi;
     }
+    public static boolean isPrimeRandom(long n) {
+        return true;
+    }
     public static long pow(long a, long b) {
         long ans = 1;
         while (b > 0) {
