@@ -36,9 +36,7 @@ public class Main {
         OutputStream outputStream = System.out;
         PrintWriter out = new PrintWriter(outputStream);
         InputReader in = new InputReader(inputStream);
-        Point a = new Point(1, 1);
-        Point b = new Point(3, 1);
-        Point c = new Point(2, 2);
+        
         out.close();
     }
 
