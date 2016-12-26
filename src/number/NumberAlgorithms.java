@@ -39,7 +39,7 @@ public class NumberAlgorithms {
         }
         return phi;
     }
-    public static int[] getPhi(int n) {
+    public static int[] getPhi(int n) { // das ist besser
         int[] phi = new int[n + 1];
         for (int i = 1; i <= n; i++) {
             phi[i] = i;
