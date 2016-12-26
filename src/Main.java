@@ -36,8 +36,8 @@ public class Main {
         OutputStream outputStream = System.out;
         PrintWriter out = new PrintWriter(outputStream);
         InputReader in = new InputReader(inputStream);
-        Line l = new Line(new Point(0, 0), new Point(5, 5));
-        out.println(l.a + " " + l.b + " " + l.c);
+        
+        out.println(number.NumberAlgorithms.isPrime(5));
         out.close();
     }
 

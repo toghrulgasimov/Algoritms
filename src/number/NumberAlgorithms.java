@@ -18,7 +18,15 @@ public class NumberAlgorithms {
         }
         return p;
     }
-
+    public static boolean isPrime(long a) {
+        for(long i = 2; i <= Math.sqrt(a); i++) {
+            if(a % i == 0) return false;
+        }
+        return true;
+    }
+    public static long inverse(long a, long MOD) {
+        return powMod(a, MOD, MOD - 2);
+    }
     public static int[] getPhi(int n) {
         int[] phi = new int[n + 1];
         for(int i = 1; i <= n; i++) {
