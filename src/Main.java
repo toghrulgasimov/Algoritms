@@ -1,5 +1,4 @@
-import Geometry.Line;
-import Geometry.Point;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -30,14 +29,13 @@ import java.util.logging.Logger;
 
 public class Main {
 
-    
-    public static void main(String[] args)    {
+    public static void main(String[] args) {
         InputStream inputStream = System.in;
         OutputStream outputStream = System.out;
         PrintWriter out = new PrintWriter(outputStream);
         InputReader in = new InputReader(inputStream);
+
         
-        out.println(number.NumberAlgorithms.isPrime(5));
         out.close();
     }
 
@@ -93,9 +91,12 @@ public class Main {
         private BigInteger nextBigInteger() {
             return new BigInteger(next());
         }
+
         public void printAr(int[] a) {
             System.out.print("[");
-            for(long x  : a)System.out.print(x + ",");
+            for (long x : a) {
+                System.out.print(x + ",");
+            }
             System.out.print("]");
         }
     }
