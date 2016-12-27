@@ -2,7 +2,7 @@ package datastructure;
 
 
 public class SparsaTable {
-    public long[][] M;
+    public int[][] M;
     public int[] log;
     public int n, k;
     public SparsaTable(int n) {
@@ -15,9 +15,9 @@ public class SparsaTable {
         }
         
         this.k = log[n];
-        M = new long[n][k + 1];
+        M = new int[n][k + 1];
     }
-    public void init(long[] a) {
+    public void init(int[] a) {
         for(int i = 0; i < n; i++) {
             M[i][0] = a[i];
         } // 
@@ -27,7 +27,7 @@ public class SparsaTable {
             }
         }
     }
-    public long get(int l, int r) {
+    public int get(int l, int r) {
         int k = log[r - l + 1];
         return Math.min(M[l][k], M[r - (1<<k) + 1][k]);
     }
