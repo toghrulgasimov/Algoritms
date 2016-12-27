@@ -29,25 +29,18 @@ import java.util.logging.Logger;
 
 public class Main {
 
-    public static long gcd(long a, long b) {
-        if (b == 0) {
-            return a;
-        } else {
-            return gcd(b, a % b);
-        }
-    }
 
+    
     public static void main(String[] args) {
         InputStream inputStream = System.in;
         OutputStream outputStream = System.out;
         PrintWriter out = new PrintWriter(outputStream);
         InputReader in = new InputReader(inputStream);
-        String[] s = {"Sheldon", "Leonard", "Penny", "Rajesh", "Howard"};
-        int n = in.nextInt();
-        int p = n / 6 + 1;
-        long l = p * 5;
-        out.println(p);
-        out.println(s[((n + 1) / p) % 5]);
+        
+        double a = in.nextDouble(), b = in.nextDouble(), x = in.nextDouble(), c = in.nextDouble();
+        if((c - Math.max(Math.max(a, b), x)) > 1e-9) {
+            out.println("YES");
+        }else out.println("NO");
         out.close();
     }
 
