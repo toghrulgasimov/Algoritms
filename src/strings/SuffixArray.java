@@ -34,7 +34,7 @@ public class SuffixArray {
                 T[i].orgigindex = i;
             }
             Arrays.sort(T);
-            suffixrank[0][T[0].orgigindex] = 0;
+            suffixrank[stp][T[0].orgigindex] = 0;
             for(int i = 1, currRank = 0; i < n; i++) {
                 if(T[i].firstHalf != T[i - 1].firstHalf || T[i].secondHalf != T[i - 1].secondHalf)
                     currRank++;

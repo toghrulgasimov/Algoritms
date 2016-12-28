@@ -37,7 +37,8 @@ public class Main {
         OutputStream outputStream = System.out;
         PrintWriter out = new PrintWriter(outputStream);
         InputReader in = new InputReader(inputStream);
-        StringBuilder s = new StringBuilder("");
+        
+        
         
         
         out.close();
