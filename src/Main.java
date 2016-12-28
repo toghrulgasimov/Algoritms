@@ -26,6 +26,8 @@ import java.util.TreeSet;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import strings.SuffixArray;
+import strings.SuffixArray2;
 
 public class Main {
 
