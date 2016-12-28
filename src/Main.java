@@ -37,10 +37,7 @@ public class Main {
         PrintWriter out = new PrintWriter(outputStream);
         InputReader in = new InputReader(inputStream);
         
-        double a = in.nextDouble(), b = in.nextDouble(), x = in.nextDouble(), c = in.nextDouble();
-        if((c - Math.max(Math.max(a, b), x)) > 1e-9) {
-            out.println("YES");
-        }else out.println("NO");
+        
         out.close();
     }
 
