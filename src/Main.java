@@ -27,6 +27,7 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import strings.SuffixArray;
+import strings.Trie;
 
 public class Main {
 
@@ -38,9 +39,9 @@ public class Main {
         PrintWriter out = new PrintWriter(outputStream);
         InputReader in = new InputReader(inputStream);
         
-        
-        
-        
+        Trie t = new Trie();
+        t.insert("abab");
+        out.println(t.search("ababb"));
         out.close();
     }
 
