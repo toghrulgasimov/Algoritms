@@ -1,5 +1,6 @@
 package strings;
 
+import datastructure.SparsaTable;
 import java.util.Arrays;
 
 public class SuffixArray {
@@ -29,7 +30,7 @@ public class SuffixArray {
         n = s.length();
         suffixrank = new int[30][n];
         T = new Tuple[n];
-        
+
         for (int i = 0; i < n; i++) {
             suffixrank[0][i] = s.charAt(i) - 'a';
             T[i] = new Tuple();
@@ -58,14 +59,30 @@ public class SuffixArray {
         lcp = new int[n];
         lcp[0] = 0;
         int h = 0;
-        for(int i = 1; i < n; i++) {
-            if(suffixrank[stp][i] != 0) {
-                int j = T[suffixrank[stp][i]].orgigindex;
-                while(s.charAt(i + h) == s.charAt(j + h))
+        for (int i = 0; i < n; i++) {
+            if (suffixrank[stp][i] != 0) {
+                int j = T[suffixrank[stp][i] - 1].orgigindex;
+                while (i + h < n && j + h < n && s.charAt(i + h) == s.charAt(j + h)) {
                     h++;
+                }
                 lcp[suffixrank[stp][i]] = h;
-                
+                if (h > 0) {
+                    h--;
+                }
             }
         }
+
+    }
+
+    public int getPreffix(int i, int j) {
+        SparsaTable t = new SparsaTable(n);
+        t.init(lcp);
+        int l = suffixrank[stp][i], r = suffixrank[stp][j];
+        if (l > r) {
+            int tmp = l;
+            l = r;
+            r = tmp;
+        }
+        return t.get(l + 1, r);
     }
 }
