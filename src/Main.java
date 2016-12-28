@@ -27,7 +27,6 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import strings.SuffixArray;
-import strings.SuffixArray2;
 
 public class Main {
 
@@ -38,6 +37,7 @@ public class Main {
         OutputStream outputStream = System.out;
         PrintWriter out = new PrintWriter(outputStream);
         InputReader in = new InputReader(inputStream);
+        StringBuilder s = new StringBuilder("");
         
         
         out.close();
