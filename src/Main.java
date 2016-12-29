@@ -30,49 +30,26 @@ import java.util.logging.Logger;
 
 public class Main {
 
+    
+    public static int gcd(int a, int b) {
+        if(b == 0) return a;
+        else return gcd(b, a % b);
+    }
     public static void main(String[] args) {
         InputStream inputStream = System.in;
         OutputStream outputStream = System.out;
         PrintWriter out = new PrintWriter(outputStream);
         InputReader in = new InputReader(inputStream);
         
-        int n = in.nextInt(), k = in.nextInt();
-        String[] pass = new String[n];
-        for(int i = 0; i < n; i++) {
-            pass[i] = in.next();
+        long k = in.nextLong(), l = in.nextLong();
+        long p = k;
+        int i = 1;
+        while(p < l) {
+            i++;
+            p *= k;
         }
-        String correct = in.next();
-        Arrays.sort(pass, new Comparator<String>() {
-            @Override
-            public int compare(String t, String t1) {
-                return Integer.compare(t.length(), t1.length());
-            }
-        });
-        int min = 0, max = 0;
-        for(int i = 0; i < n; i++) {
-            if(pass[i].length() == correct.length()) {
-                min = i;
-                break;
-            }
-        }
-        for(int i = 0; i < n; i++) {
-            if(pass[i].length() == correct.length()) {
-                max = i;
-            }
-        }
-        int ans1 = 0, t = 0;
-        for(int i = 0; i <= min; i++) {
-            if(t % k == 0 && t != 0) ans1 += 5;
-            ans1 += 1;
-            t++;
-        }
-        int ans2 = 0; t = 0;
-        for(int i = 0; i <= max; i++) {
-            if(t % k == 0 && t != 0) ans2 += 5;
-            ans2 += 1;
-            t++;
-        }
-        out.println(ans1 + " " + ans2);
+        if(p == l) out.println("YES\n"+(i - 1));
+        else out.println("NO");
         out.close();
     }
 
