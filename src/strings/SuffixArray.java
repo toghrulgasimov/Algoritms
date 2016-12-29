@@ -86,4 +86,11 @@ public class SuffixArray {
         if(l == r) return n - i;
         return t.get(l + 1, r);
     }
+    public long disticsubstring() {
+        long ans = this.n - this.T[0].orgigindex;
+        for(int i = 1; i < this.n; i++) {
+            ans += (this.n - this.T[i].orgigindex - this.lcp[i]);
+        }
+        return ans;
+    }
 }
