@@ -83,6 +83,7 @@ public class SuffixArray {
             l = r;
             r = tmp;
         }
+        if(l == r) return n - i;
         return t.get(l + 1, r);
     }
 }

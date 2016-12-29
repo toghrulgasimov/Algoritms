@@ -28,6 +28,7 @@ public class SparsaTable {
         }
     }
     public int get(int l, int r) {
+        if(r < l) return 0;
         int k = log[r - l + 1];
         return Math.min(M[l][k], M[r - (1<<k) + 1][k]);
     }
