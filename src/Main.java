@@ -30,26 +30,30 @@ import java.util.logging.Logger;
 
 public class Main {
 
-    
-    public static int gcd(int a, int b) {
+    public static long gcd(long a, long b) {
         if(b == 0) return a;
-        else return gcd(b, a % b);
+        return gcd(b, a % b);
     }
+    public static Map<Long, Boolean> m = new HashMap<>();
+    public static long x = 1234567, y = 123456, z = 1234;
+    public static long n;
     public static void main(String[] args) {
         InputStream inputStream = System.in;
         OutputStream outputStream = System.out;
         PrintWriter out = new PrintWriter(outputStream);
         InputReader in = new InputReader(inputStream);
         
-        long k = in.nextLong(), l = in.nextLong();
-        long p = k;
-        int i = 1;
-        while(p < l) {
-            i++;
-            p *= k;
+        n = in.nextInt();
+        
+        for(int i = 0; i * x <= n; i++) {
+            for(int j = 0; i * x + j * y <= n; j++) {
+                if((n - i * x - j*y) % z == 0) {
+                    out.println("YES"); out.close();
+                    return;
+                }
+            }
         }
-        if(p == l) out.println("YES\n"+(i - 1));
-        else out.println("NO");
+        out.println("NO");
         out.close();
     }
 
