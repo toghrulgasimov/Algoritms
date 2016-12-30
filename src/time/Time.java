@@ -9,6 +9,7 @@ package time;
  *
  * @author Toghrul
  */
-public class Time {
+public class Time { // bool leap = st.wYear % 4 == 0 && (st.wYear % 100 != 0 || st.wYear % 400 == 0); 
+
     
 }
