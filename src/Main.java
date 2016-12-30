@@ -30,30 +30,133 @@ import java.util.logging.Logger;
 
 public class Main {
 
-    public static long gcd(long a, long b) {
-        if(b == 0) return a;
-        return gcd(b, a % b);
+
+    public static class SparsaTable {
+
+        public int[][] M;
+        public int[] log;
+        public int n, k;
+
+        public SparsaTable(int n) {
+            log = new int[n + 1];
+            log[1] = 0;
+            this.n = n;
+
+            for (int i = 2; i <= n; i++) {
+                log[i] = log[i >> 1] + 1;
+            }
+
+            this.k = log[n];
+            M = new int[n][k + 1];
+        }
+
+        public void init(int[] a) {
+            for (int i = 0; i < n; i++) {
+                M[i][0] = a[i];
+            } // 
+            for (int j = 1; j <= k; j++) {
+                for (int i = 0; i + (1 << (j - 1)) < n; i++) {
+                    M[i][j] = Math.min(M[i][j - 1], M[i + (1 << (j - 1))][j - 1]);
+                }
+            }
+        }
+
+        public int get(int l, int r) {
+            if (r < l) {
+                return 0;
+            }
+            int k = log[r - l + 1];
+            return Math.min(M[l][k], M[r - (1 << k) + 1][k]);
+        }
     }
-    public static Map<Long, Boolean> m = new HashMap<>();
-    public static long x = 1234567, y = 123456, z = 1234;
-    public static long n;
+
+    public static class SparsaTable2 {
+
+        public int[][] M;
+        public int[] log;
+        public int n, k;
+
+        public SparsaTable2(int n) {
+            log = new int[n + 1];
+            log[1] = 0;
+            this.n = n;
+
+            for (int i = 2; i <= n; i++) {
+                log[i] = log[i >> 1] + 1;
+            }
+
+            this.k = log[n];
+            M = new int[n][k + 1];
+        }
+
+        public void init(int[] a) {
+            for (int i = 0; i < n; i++) {
+                M[i][0] = a[i];
+            } // 
+            for (int j = 1; j <= k; j++) {
+                for (int i = 0; i + (1 << (j - 1)) < n; i++) {
+                    M[i][j] = Math.max(M[i][j - 1], M[i + (1 << (j - 1))][j - 1]);
+                }
+            }
+        }
+
+        public int get(int l, int r) {
+            if (r < l) {
+                return 0;
+            }
+            int k = log[r - l + 1];
+            return Math.max(M[l][k], M[r - (1 << k) + 1][k]);
+        }
+    }
     public static void main(String[] args) {
         InputStream inputStream = System.in;
         OutputStream outputStream = System.out;
         PrintWriter out = new PrintWriter(outputStream);
         InputReader in = new InputReader(inputStream);
-        
-        n = in.nextInt();
-        
-        for(int i = 0; i * x <= n; i++) {
-            for(int j = 0; i * x + j * y <= n; j++) {
-                if((n - i * x - j*y) % z == 0) {
-                    out.println("YES"); out.close();
-                    return;
+
+        int n = in.nextInt();
+        int[] a = in.nextArray(n);
+        int[] b = in.nextArray(n);
+        SparsaTable sa = new SparsaTable(n);
+        sa.init(a);
+        SparsaTable sa2 = new SparsaTable(n);
+        sa2.init(b);
+        long ans = 0;
+        for(int i = 0; i < n; i++) {
+            int l = i, r = n - 1, m;
+            int lower = -1;
+            while(l <= r) {
+                m = (l + r) >> 1;
+                int d1 = sa.get(i, m);
+                int d2 = sa2.get(1, m);
+                if(d1 == d2) {
+                    lower = m;
+                    r = m - 1;
+                }else if(d1 > d2) {
+                    l = m + 1;
+                }else {
+                    r = m - 1;
                 }
             }
+            l = i; r = n - 1; m = 0;
+            int upper = -1;
+            while(l <= r) {
+                m = (l + r) >> 1;
+                int d1 = sa.get(i, m);
+                int d2 = sa2.get(1, m);
+                if(d1 == d2) {
+                    lower = m;
+                    l = m  + 1;
+                }else if(d1 > d2) {
+                    l = m + 1;
+                }else {
+                    r = m - 1;
+                }
+            }
+            if(lower > -1 && lower > -1)
+            ans += (upper - lower);
         }
-        out.println("NO");
+        out.println(ans);
         out.close();
     }
 
