@@ -31,130 +31,67 @@ import java.util.logging.Logger;
 public class Main {
 
 
-    public static class SparsaTable {
+    public static int n, m;
+    public static int[] a, l, r, b;
+    public static class Triple {
+        public int l, r, k;
 
-        public int[][] M;
-        public int[] log;
-        public int n, k;
-
-        public SparsaTable(int n) {
-            log = new int[n + 1];
-            log[1] = 0;
-            this.n = n;
-
-            for (int i = 2; i <= n; i++) {
-                log[i] = log[i >> 1] + 1;
-            }
-
-            this.k = log[n];
-            M = new int[n][k + 1];
+        public Triple(int l, int r, int k) {
+            this.l = l;
+            this.r = r;
+            this.k = k;
         }
-
-        public void init(int[] a) {
-            for (int i = 0; i < n; i++) {
-                M[i][0] = a[i];
-            } // 
-            for (int j = 1; j <= k; j++) {
-                for (int i = 0; i + (1 << (j - 1)) < n; i++) {
-                    M[i][j] = Math.min(M[i][j - 1], M[i + (1 << (j - 1))][j - 1]);
-                }
-            }
-        }
-
-        public int get(int l, int r) {
-            if (r < l) {
-                return 0;
-            }
-            int k = log[r - l + 1];
-            return Math.min(M[l][k], M[r - (1 << k) + 1][k]);
-        }
-    }
-
-    public static class SparsaTable2 {
-
-        public int[][] M;
-        public int[] log;
-        public int n, k;
-
-        public SparsaTable2(int n) {
-            log = new int[n + 1];
-            log[1] = 0;
-            this.n = n;
-
-            for (int i = 2; i <= n; i++) {
-                log[i] = log[i >> 1] + 1;
-            }
-
-            this.k = log[n];
-            M = new int[n][k + 1];
-        }
-
-        public void init(int[] a) {
-            for (int i = 0; i < n; i++) {
-                M[i][0] = a[i];
-            } // 
-            for (int j = 1; j <= k; j++) {
-                for (int i = 0; i + (1 << (j - 1)) < n; i++) {
-                    M[i][j] = Math.max(M[i][j - 1], M[i + (1 << (j - 1))][j - 1]);
-                }
-            }
-        }
-
-        public int get(int l, int r) {
-            if (r < l) {
-                return 0;
-            }
-            int k = log[r - l + 1];
-            return Math.max(M[l][k], M[r - (1 << k) + 1][k]);
-        }
+        
     }
     public static void main(String[] args) {
         InputStream inputStream = System.in;
         OutputStream outputStream = System.out;
         PrintWriter out = new PrintWriter(outputStream);
         InputReader in = new InputReader(inputStream);
-
-        int n = in.nextInt();
-        int[] a = in.nextArray(n);
-        int[] b = in.nextArray(n);
-        SparsaTable sa = new SparsaTable(n);
-        sa.init(a);
-        SparsaTable sa2 = new SparsaTable(n);
-        sa2.init(b);
-        long ans = 0;
+        
+        n = in.nextInt();
+        m = in.nextInt();
+        a = in.nextArray(n);
+        b = new int[n];
+        l = new int[m];
+        r = new int[m];
+        for(int i = 0; i < m; i++) {
+            l[i] = in.nextInt() - 1;
+            r[i] = in.nextInt() - 1;
+            b[l[i]]++;
+            if(r[i] < n - 1)
+                b[r[i] + 1]--;
+        }
+        for(int i = 1; i < n; i++) {
+            b[i] += b[i - 1];
+        }
+        Arrays.sort(a);
+        //in.printAr(b);
+        ArrayList<Triple> l = new ArrayList<Triple>();
+        int x = 0;
         for(int i = 0; i < n; i++) {
-            int l = i, r = n - 1, m;
-            int lower = -1;
-            while(l <= r) {
-                m = (l + r) >> 1;
-                int d1 = sa.get(i, m);
-                int d2 = sa2.get(1, m);
-                if(d1 == d2) {
-                    lower = m;
-                    r = m - 1;
-                }else if(d1 > d2) {
-                    l = m + 1;
-                }else {
-                    r = m - 1;
-                }
+            if(b[x] != b[i]) {
+                l.add(new Triple(x, i - 1, b[x]));
+                //out.println(x + " " + (i - 1) + " " + b[x]);
+                x = i;
             }
-            l = i; r = n - 1; m = 0;
-            int upper = -1;
-            while(l <= r) {
-                m = (l + r) >> 1;
-                int d1 = sa.get(i, m);
-                int d2 = sa2.get(1, m);
-                if(d1 == d2) {
-                    lower = m;
-                    l = m  + 1;
-                }else if(d1 > d2) {
-                    l = m + 1;
-                }else {
-                    r = m - 1;
-                }
+            
+        }
+        l.add(new Triple(x, n - 1, b[x]));
+        //out.println(x + " " + (n - 1) + " " + b[x]);
+        Collections.sort(l, new Comparator<Triple>() {
+            @Override
+            public int compare(Triple t, Triple t1) {
+                return Integer.compare(t1.k, t.k);
             }
-            if(lower > -1 && lower > -1)
-            ans += (upper - lower);
+            
+        });
+        int t = n - 1;
+        long ans = 0;
+        for(Triple xx : l) {
+            for(int i = xx.l; i <= xx.r; i++, t--) {
+                ans += 1L * xx.k * a[t];
+            }
         }
         out.println(ans);
         out.close();
