@@ -30,70 +30,66 @@ import java.util.logging.Logger;
 
 public class Main {
 
-
-    public static int n, m;
-    public static int[] a, l, r, b;
-    public static class Triple {
-        public int l, r, k;
-
-        public Triple(int l, int r, int k) {
-            this.l = l;
-            this.r = r;
-            this.k = k;
-        }
-        
-    }
     public static void main(String[] args) {
         InputStream inputStream = System.in;
         OutputStream outputStream = System.out;
         PrintWriter out = new PrintWriter(outputStream);
         InputReader in = new InputReader(inputStream);
-        
-        n = in.nextInt();
-        m = in.nextInt();
-        a = in.nextArray(n);
-        b = new int[n];
-        l = new int[m];
-        r = new int[m];
-        for(int i = 0; i < m; i++) {
-            l[i] = in.nextInt() - 1;
-            r[i] = in.nextInt() - 1;
-            b[l[i]]++;
-            if(r[i] < n - 1)
-                b[r[i] + 1]--;
-        }
-        for(int i = 1; i < n; i++) {
-            b[i] += b[i - 1];
-        }
-        Arrays.sort(a);
-        //in.printAr(b);
-        ArrayList<Triple> l = new ArrayList<Triple>();
-        int x = 0;
-        for(int i = 0; i < n; i++) {
-            if(b[x] != b[i]) {
-                l.add(new Triple(x, i - 1, b[x]));
-                //out.println(x + " " + (i - 1) + " " + b[x]);
-                x = i;
-            }
-            
-        }
-        l.add(new Triple(x, n - 1, b[x]));
-        //out.println(x + " " + (n - 1) + " " + b[x]);
-        Collections.sort(l, new Comparator<Triple>() {
-            @Override
-            public int compare(Triple t, Triple t1) {
-                return Integer.compare(t1.k, t.k);
-            }
-            
-        });
-        int t = n - 1;
-        long ans = 0;
-        for(Triple xx : l) {
-            for(int i = xx.l; i <= xx.r; i++, t--) {
-                ans += 1L * xx.k * a[t];
+
+        int n = in.nextInt(), k = in.nextInt();
+
+        char[] a = in.next().toCharArray();
+        int t = 0;
+        for (int i = 1; i < n; i++) {
+            if (a[i] == a[i - 1]) {
+
+                for (char x = 'A'; x <= 'A' + k - 1; x++) {
+                    if (x != a[i] && i != n - 1 && x != a[i + 1]) {
+                        a[i] = x;
+                        t++;
+                        break;
+                    } else if (i == n - 1 && x != a[i]) {
+                        a[i] = x;
+                        t++;
+                        break;
+                    }
+                }
             }
         }
-        out.println(ans);
+        char[] b = new char[n];
+        for (int i = n - 1; i >= 0; i--) {
+            b[n - i - 1] = a[i];
+        }
+        boolean p = true;
+        for (int i = 1; i < n; i++) {
+            if (a[i] == a[i - 1]) {
+                p = false;
+                break;
+            }
+        }
+        if (p) {
+            out.println(t);
+            out.println(new String(a));
+        } else {
+            for (int i = 1; i < n; i++) {
+                if (b[i] == b[i - 1]) {
+
+                    for (char x = 'A'; x <= 'A' + k - 1; x++) {
+                        if (x != b[i] && i != n - 1 && x != b[i + 1]) {
+                            b[i] = x;
+                            t++;
+                            break;
+                        } else if (i == n - 1 && x != b[i]) {
+                            b[i] = x;
+                            t++;
+                            break;
+                        }
+                    }
+                }
+            }
+            out.println(t);
+            for(int i = n - 1; i >= 0; i--) out.print(b[i]);
+        }
         out.close();
     }
 
