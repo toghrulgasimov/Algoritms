@@ -4,6 +4,22 @@ import java.util.ArrayList;
 
 public class NumberAlgorithms {
 
+    int phi(int n) {
+        int result = n;
+        for (int i = 2; i * i <= n; ++i) {
+            if (n % i == 0) {
+                while (n % i == 0) {
+                    n /= i;
+                }
+                result -= result / i;
+            }
+        }
+        if (n > 1) {
+            result -= result / n;
+        }
+        return result;
+    }
+
     public static ArrayList<Integer> primes(int n) {
         ArrayList<Integer> p = new ArrayList<Integer>();
         int[] lp = new int[n + 1];
@@ -18,27 +34,33 @@ public class NumberAlgorithms {
         }
         return p;
     }
+
     public static boolean isPrime(long a) {
-        for(long i = 2; i <= Math.sqrt(a); i++) {
-            if(a % i == 0) return false;
+        for (long i = 2; i <= Math.sqrt(a); i++) {
+            if (a % i == 0) {
+                return false;
+            }
         }
         return true;
     }
+
     public static long inverse(long a, long MOD) {
         return powMod(a, MOD, MOD - 2);
     }
+
     public static int[] getPhitourist(int n) {
         int[] phi = new int[n + 1];
-        for(int i = 1; i <= n; i++) {
+        for (int i = 1; i <= n; i++) {
             phi[i] = i;
         }
-        for(int i = 1; i <= n; i++) {
-            for(int j = i + i; j <= n; j += i) {
+        for (int i = 1; i <= n; i++) {
+            for (int j = i + i; j <= n; j += i) {
                 phi[j] -= phi[i];
             }
         }
         return phi;
     }
+
     public static int[] getPhi(int n) { // das ist besser
         int[] phi = new int[n + 1];
         for (int i = 1; i <= n; i++) {
@@ -55,36 +77,48 @@ public class NumberAlgorithms {
         }
         return phi;
     }
+
     public static boolean isPrimeRandom(long n) {
         return true;
     }
+
     public static long pow(long a, long b) {
         long ans = 1;
         while (b > 0) {
-            if (b % 2 == 1) ans *= a;
+            if (b % 2 == 1) {
+                ans *= a;
+            }
             b >>= 1;
             a *= a;
         }
         return ans;
     }
+
     public static long powMod(long a, long b, long m) {
         long ans = 1;
         while (b > 0) {
-            if (b % 2 == 1) ans = (ans * a) % m;
+            if (b % 2 == 1) {
+                ans = (ans * a) % m;
+            }
             b >>= 1;
             a = (a * a) % m;
         }
         return ans;
     }
+
     public static long gcd(long a, long b) {
-        if(b == 0) return a;
+        if (b == 0) {
+            return a;
+        }
         return gcd(b, a % b);
     }
+
     public static long gcdextend(long a, long b, long[] X) {
-        if(b == 0) {
-            X[0] = 1; X[1] = 0;
+        if (b == 0) {
+            X[0] = 1;
+            X[1] = 0;
             return a;
-        }else {
+        } else {
             long d = gcdextend(b, a % b, X);
             long x = X[1];
             long y = X[0] - X[1] * (a / b);
