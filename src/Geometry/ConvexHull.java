@@ -11,9 +11,11 @@ import java.util.ArrayList;
  *
  * @author Toghrul
  */
-public class ConvexHull {
-    public ArrayList<Point> l;
-    public ConvexHull(ArrayList<Point> p) {
-        l = p;
+public  class ConvexHull {
+    public static ArrayList<Point> l;
+    public ArrayList<Point> ConvexHull(ArrayList<Point> p) {
+        ArrayList<Point> ans = new ArrayList<Point>();
+        
+        return ans;
     }
 }

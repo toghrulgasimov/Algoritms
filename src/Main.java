@@ -1,4 +1,5 @@
 
+import Geometry.Point;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -29,67 +30,17 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Main {
-
+    
     public static void main(String[] args) {
         InputStream inputStream = System.in;
         OutputStream outputStream = System.out;
         PrintWriter out = new PrintWriter(outputStream);
         InputReader in = new InputReader(inputStream);
-
-        int n = in.nextInt(), k = in.nextInt();
-
-        char[] a = in.next().toCharArray();
-        int t = 0;
-        for (int i = 1; i < n; i++) {
-            if (a[i] == a[i - 1]) {
-
-                for (char x = 'A'; x <= 'A' + k - 1; x++) {
-                    if (x != a[i] && i != n - 1 && x != a[i + 1]) {
-                        a[i] = x;
-                        t++;
-                        break;
-                    } else if (i == n - 1 && x != a[i]) {
-                        a[i] = x;
-                        t++;
-                        break;
-                    }
-                }
-            }
-        }
-        char[] b = new char[n];
-        for (int i = n - 1; i >= 0; i--) {
-            b[n - i - 1] = a[i];
-        }
-        boolean p = true;
-        for (int i = 1; i < n; i++) {
-            if (a[i] == a[i - 1]) {
-                p = false;
-                break;
-            }
-        }
-        if (p) {
-            out.println(t);
-            out.println(new String(a));
-        } else {
-            for (int i = 1; i < n; i++) {
-                if (b[i] == b[i - 1]) {
-
-                    for (char x = 'A'; x <= 'A' + k - 1; x++) {
-                        if (x != b[i] && i != n - 1 && x != b[i + 1]) {
-                            b[i] = x;
-                            t++;
-                            break;
-                        } else if (i == n - 1 && x != b[i]) {
-                            b[i] = x;
-                            t++;
-                            break;
-                        }
-                    }
-                }
-            }
-            out.println(t);
-            for(int i = n - 1; i >= 0; i--) out.print(b[i]);
-        }
+        
+        Point p0 = new Point(0, 0);
+        Point p1 = new Point(2, 1);
+        Point p2 = new Point(2, 2);
+        out.println(Point.turnleft(p0, p1, p2));
         out.close();
     }
 

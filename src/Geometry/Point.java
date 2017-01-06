@@ -26,4 +26,16 @@ public class Point {
             if(Math.abs(dist(a, b) - dist(a, c) - dist(b, c)) < 1e-9) return true;
             return false;
         }
+        public static boolean turnleft(Point p0, Point p1, Point p2) {
+            p1 = minus(p1, p0);
+            p2 = minus(p2, p0);
+            double d = mul(p1, p2);
+            return d > 1e-9;
+        }
+        public static boolean turnlright(Point p0, Point p1, Point p2) {
+            p1 = minus(p1, p0);
+            p2 = minus(p2, p0);
+            double d = mul(p1, p2);
+            return d < -1e-9;
+        }
     }
