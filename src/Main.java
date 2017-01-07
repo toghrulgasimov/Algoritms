@@ -57,16 +57,16 @@ public class Main {
         PrintWriter out = new PrintWriter(outputStream);
         InputReader in = new InputReader(inputStream);
         
-        n = in.nextInt(); m = in.nextInt(); t = in.nextLong();
-        g = new ArrayList[n];
-        for(int i = 0; i < n; i++)
-            g[i] = new ArrayList<Pair>();
-        for(int i = 0; i < m; i++) {
-            int x = in.nextInt() - 1, y = in.nextInt() - 1, w = in.nextInt();
-            g[x].add(new Pair(y, w));
+        int n = 5;
+        int[] a = {1, 2, 3, 2, 1};
+        int[] d = {-20, 20, 20, 20, 20, 20};
+        for(int i = 0; i < n; i++) {
+            for(int j = 1; j <= n; j++) {
+                if(d[j-1] < a[i] && a[i] < d[j])
+                    d[j] = a[i];
+            }
         }
-        dfs(0, -1);
-        out.println(l);
+        for(int i = 0; i < n; i++) out.print(d[i] + " ");
         out.close();
     }
 
