@@ -1,5 +1,4 @@
 
-import Geometry.Point;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Queue;
+import java.util.Scanner;
 import java.util.Set;
 import java.util.Stack;
 import java.util.StringTokenizer;
@@ -31,16 +31,42 @@ import java.util.logging.Logger;
 
 public class Main {
     
+    
+    public static class Pair {
+        int v,w;
+        public Pair(int v, int w) {
+            this.v = v;
+            this.w = w;
+        }
+        
+    }
+    public static int n, m;
+    public static long t;
+    public static ArrayList<Pair> [] g;
+    public static ArrayList<Integer> l = new ArrayList<Integer>();
+    public static void dfs(int v, int p) {
+        l.add(v);
+        for(Pair x : g[v]) {
+            if(x.v == p) continue;
+            dfs(x.v, v);
+        }
+    }
     public static void main(String[] args) {
         InputStream inputStream = System.in;
         OutputStream outputStream = System.out;
         PrintWriter out = new PrintWriter(outputStream);
         InputReader in = new InputReader(inputStream);
         
-        Point p0 = new Point(0, 0);
-        Point p1 = new Point(2, 1);
-        Point p2 = new Point(2, 2);
-        out.println(Point.turnleft(p0, p1, p2));
+        n = in.nextInt(); m = in.nextInt(); t = in.nextLong();
+        g = new ArrayList[n];
+        for(int i = 0; i < n; i++)
+            g[i] = new ArrayList<Pair>();
+        for(int i = 0; i < m; i++) {
+            int x = in.nextInt() - 1, y = in.nextInt() - 1, w = in.nextInt();
+            g[x].add(new Pair(y, w));
+        }
+        dfs(0, -1);
+        out.println(l);
         out.close();
     }
 
