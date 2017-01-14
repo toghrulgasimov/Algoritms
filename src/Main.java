@@ -1,4 +1,3 @@
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -31,42 +30,14 @@ import java.util.logging.Logger;
 
 public class Main {
     
-    
-    public static class Pair {
-        int v,w;
-        public Pair(int v, int w) {
-            this.v = v;
-            this.w = w;
-        }
-        
-    }
-    public static int n, m;
-    public static long t;
-    public static ArrayList<Pair> [] g;
-    public static ArrayList<Integer> l = new ArrayList<Integer>();
-    public static void dfs(int v, int p) {
-        l.add(v);
-        for(Pair x : g[v]) {
-            if(x.v == p) continue;
-            dfs(x.v, v);
-        }
-    }
     public static void main(String[] args) {
         InputStream inputStream = System.in;
         OutputStream outputStream = System.out;
         PrintWriter out = new PrintWriter(outputStream);
         InputReader in = new InputReader(inputStream);
         
-        int n = 5;
-        int[] a = {1, 2, 3, 2, 1};
-        int[] d = {-20, 20, 20, 20, 20, 20};
-        for(int i = 0; i < n; i++) {
-            for(int j = 1; j <= n; j++) {
-                if(d[j-1] < a[i] && a[i] < d[j])
-                    d[j] = a[i];
-            }
-        }
-        for(int i = 0; i < n; i++) out.print(d[i] + " ");
+        
+        
         out.close();
     }
 
