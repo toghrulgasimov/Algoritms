@@ -1,3 +1,4 @@
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -29,15 +30,36 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Main {
+
     
     public static void main(String[] args) {
         InputStream inputStream = System.in;
         OutputStream outputStream = System.out;
         PrintWriter out = new PrintWriter(outputStream);
         InputReader in = new InputReader(inputStream);
+
+        boolean[][] dp = new boolean[101][2];
+        dp[0][0] = false;
+        dp[1][0] = false;
+        dp[2][0] = true;
+        dp[3][0] = true;
+        dp[4][0] = true;
+        dp[5][0] = true;
         
+        dp[0][1] = true;
+        dp[1][1] = true;
+        dp[2][1] = false;
+        dp[3][1] = false;
+        dp[4][1] = false;
+        dp[5][1] = false;
         
-        
+        for(int i = 6; i <= 100; i++) {
+            dp[i][0] = dp[i - 2][1] | dp[i - 3][1] | dp[i - 5][1];
+            if(!dp[i][0]) dp[i][1] = true;
+        }
+        for(int i = 0; i < 100; i++) {
+            out.println(i + " " + dp[i][0]);
+        }
         out.close();
     }
 
