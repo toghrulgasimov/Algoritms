@@ -54,7 +54,7 @@ public class Main {
         dp[5][1] = false;
         
         for(int i = 6; i <= 100; i++) {
-            dp[i][0] = dp[i - 2][1] | dp[i - 3][1] | dp[i - 5][1];
+            dp[i][0] = dp[i - 2][1] | dp[i - 3][1] | dp[i - 5][1]; // 0 cinin konu olmayanlardan trunu secirik
             if(!dp[i][0]) dp[i][1] = true;
         }
         for(int i = 0; i < 100; i++) {
