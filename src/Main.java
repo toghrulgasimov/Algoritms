@@ -31,34 +31,26 @@ import java.util.logging.Logger;
 
 public class Main {
 
-    
     public static void main(String[] args) {
         InputStream inputStream = System.in;
         OutputStream outputStream = System.out;
         PrintWriter out = new PrintWriter(outputStream);
         InputReader in = new InputReader(inputStream);
 
-        boolean[][] dp = new boolean[101][2];
-        dp[0][0] = false;
-        dp[1][0] = false;
-        dp[2][0] = true;
-        dp[3][0] = true;
-        dp[4][0] = true;
-        dp[5][0] = true;
+        int m = in.nextInt(), s = in.nextInt();
+        int[][] dp = new int[m + 1][s + 1];
         
-        dp[0][1] = true;
-        dp[1][1] = true;
-        dp[2][1] = false;
-        dp[3][1] = false;
-        dp[4][1] = false;
-        dp[5][1] = false;
+        for(int i = 1; i <= m; i++)
+            for(int j = 0; j <= s; j++)
+                dp[i][j] = -1;
         
-        for(int i = 6; i <= 100; i++) {
-            dp[i][0] = dp[i - 2][1] | dp[i - 3][1] | dp[i - 5][1]; // 0 cinin konu olmayanlardan trunu secirik
-            if(!dp[i][0]) dp[i][1] = true;
+        for(int i = 0; i <= 9; i++) {
+            dp[1][i] = i;
         }
-        for(int i = 0; i < 100; i++) {
-            out.println(i + " " + dp[i][0]);
+        for(int i = 2; i <= m; i++) {
+            for(int j = 1; j <= s; j++) {
+                dp[i][j]
+            }
         }
         out.close();
     }
