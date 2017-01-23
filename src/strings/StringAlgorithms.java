@@ -16,7 +16,7 @@ public class StringAlgorithms {
         pow[0] = 1;
         for (int i = 1; i < s.length(); i++) {
             hash[i] = hash[i - 1] * 31 + s.charAt(i);
-            pow[i] = pow[i - 1] * 39;
+            pow[i] = pow[i - 1] * 31;
         }
         return hash;
     }
