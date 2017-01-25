@@ -30,12 +30,12 @@ public class Point {
             p1 = minus(p1, p0);
             p2 = minus(p2, p0);
             double d = mul(p1, p2);
-            return d > 1e-9;
+            return d > 0;
         }
-        public static boolean turnlright(Point p0, Point p1, Point p2) {
+        public static boolean turnright(Point p0, Point p1, Point p2) {
             p1 = minus(p1, p0);
             p2 = minus(p2, p0);
             double d = mul(p1, p2);
-            return d < -1e-9;
+            return d < 0;
         }
     }

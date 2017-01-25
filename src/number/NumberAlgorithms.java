@@ -4,6 +4,14 @@ import java.util.ArrayList;
 
 public class NumberAlgorithms {
 
+    long sumdivisor(int[] d){
+        long ans=1;
+        for(int i=2;i<=1000;i++){
+            if(d[i]>0)
+            ans *= (pow(i,d[i]+1)-1)/(i-1);
+        }
+        return ans;
+    }
     int phi(int n) {
         int result = n;
         for (int i = 2; i * i <= n; ++i) {
