@@ -31,7 +31,7 @@ public class OfflineSqrtQuery {
         if(x<=n)
         M[x]--;
     }
-    public static int get(int x) {
+    public static long get(int x) {
         if(x>n) return 0;
         return M[x];
     }
@@ -57,48 +57,49 @@ public class OfflineSqrtQuery {
             public int compare(int[] t, int[] t1) {// das ist nicht eine aenliche coke
                 int x=t[0]/BLOCK_SIZE;
                 int y=t1[0]/BLOCK_SIZE;
-                if(x==y) return Integer.compare(t1[1], t[1]);
-                else return Integer.compare(x, y);
+                if(x==y) return t1[1]-t[1];
+                else return x-y;
             }
         });
-        int[] answer=new int[q];
+        long[] answer=new long[q];
         int L=Q[0][0],R=Q[0][1];
-        int ans=0;
+        long ans=0;
         for(int i=Q[0][0];i<=Q[0][1];i++){
-            if(get(a[i])==a[i]-1)ans++;
-            else if(get(a[i])==a[i])ans--;
+            ans -= get(a[i])*get(a[i])*a[i];
             add(a[i]);
+            ans += get(a[i])*get(a[i])*a[i];
         }
         answer[Q[0][2]]=ans;
+        out.println(Q[0][0] + "asdd " + Q[0][1]);
         for(int i=1;i<q;i++){
             while(L<Q[i][0]){
-                if(get(a[L])==a[L])ans--;
-                else if(get(a[L])==a[L]+1)ans++;
+                ans -= get(a[L])*get(a[L])*a[L];
                 remove(a[L]);
+                ans -= get(a[L])*get(a[L])*a[L];
                 L++;
             }
             while(Q[i][0]<L){
-                if(get(a[L-1])==a[L-1]-1)ans++;
-                else if(get(a[L-1])==a[L-1])ans--;
+                ans -= get(a[L-1])*get(a[L-1])*a[L-1];
                 add(a[L-1]);
+                ans += get(a[L-1])*get(a[L-1])*a[L-1];
                 L--;
             }
             while(R<Q[i][1]){
-                if(get(a[R+1])==a[R+1]-1)ans++;
-                else if(get(a[R+1])==a[R+1])ans--;
+                ans -= get(a[R+1])*get(a[R+1])*a[R+1];
                 add(a[R+1]);
+                ans += get(a[R+1])*get(a[R+1])*a[R+1];
                 R++;
             }
             while(R>Q[i][1]){
-                if(get(a[R])==a[R])ans--;
-                else if(get(a[R])==a[R]+1)ans++;
+                ans -= get(a[R])*get(a[R])*a[R];
                 remove(a[R]);
+                ans += get(a[R])*get(a[R])*a[R];
                 R--;
             }
             answer[Q[i][2]]=ans;
         }
-        for(int i=0;i<q;i++)
-            out.println(answer[i]);
+        /*for(int i=0;i<q;i++)
+            out.println(answer[i]);*/
         out.close();
     }
 
