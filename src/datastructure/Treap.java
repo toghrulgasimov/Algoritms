@@ -41,7 +41,7 @@ public class Treap {
             cur=(cur-1)/2;
         }
     }
-    public void insertb(long x){
+    public void insertb(long b,long h){
         
     }
     public void delete(int k){
