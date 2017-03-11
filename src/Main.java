@@ -1,10 +1,10 @@
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Stack;
@@ -23,14 +23,13 @@ import java.util.logging.Logger;
 
 public class Main {
 
-
+    
     
     public static void main(String[] args) throws IOException {
         InputStream inputStream = System.in;
         OutputStream outputStream = System.out;
         PrintWriter out = new PrintWriter(outputStream);
         InputReader in = new InputReader(inputStream);
-        
         
         out.close();
     }
