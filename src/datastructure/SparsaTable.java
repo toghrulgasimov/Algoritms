@@ -22,7 +22,7 @@ public class SparsaTable {
             M[i][0] = a[i];
         } // 
         for(int j = 1; j <= k; j++) {
-            for(int i = 0; i + (1<<(j - 1)) < n; i++) {
+            for(int i = 0; i + (1<<j) - 1 < n; i++) {
                 M[i][j] = Math.min(M[i][j - 1], M[i + (1<<(j - 1))][j - 1]);
             }
         }
